@@ -36,8 +36,16 @@ if (operationAns.operation === "withdraw"){
             }
         ]
     );
-    myBalance -= amountAns.amount;
-    console.log(`your current balance is: ${myBalance}` )
+
+    if (myBalance >= amountAns.amount)
+    {
+        myBalance -= amountAns.amount;
+        console.log(`your current balance is: ${myBalance}` )
+    } else
+    {
+        console.log("Insufficient Balance!");
+    }
+    
 }else if (operationAns.operation === "check balance"){
     console.log(`your balance is: ${myBalance}`)
 }else if (operationAns.operation === "Fast cash"){
@@ -52,39 +60,45 @@ if (operationAns.operation === "withdraw"){
         ]
     );
 
-    if(fastCash.fastcash==="500"){
-        console.log(`you withdraw`,500)
-        console.log(`you remaining balnce is :`,myBalance-500)
-
-    }else if(fastCash.fastcash==="1000"){
-        console.log(`you withdraw`,1000)
-        console.log(`you remaining balnce is :`,myBalance-1000)
-
-    }else if(fastCash.fastcash==="1500"){
-        console.log(`you withdraw`,1500)
-        console.log(`you remaining balnce is :`,myBalance-1500)
-
-    }else if(fastCash.fastcash==="2000"){
-        console.log(`you withdraw`,2000)
-        console.log(`you remaining balnce is :`,myBalance-2000)
-
-    }else if(fastCash.fastcash==="10000"){
-        console.log(`you withdraw`,10000)
-        console.log(`you remaining balnce is :`,myBalance-10000)
-
-    }else if(fastCash.fastcash==="otheramount"){
-        let amountAns = await inquirer.prompt(
-            [
-                {
-                    name: "amount",
-                    message: "enter your amount",
-                    type: "number"
-                }
-            ]
-        );
-        myBalance -= amountAns.amount;
-        console.log("your current balance is: " + myBalance)
-
+    if (myBalance >= parseInt(fastCash.fastcash))
+    {
+        if(fastCash.fastcash==="500"){
+            console.log(`you withdraw`,500)
+            console.log(`you remaining balnce is :`,myBalance-500)
+    
+        }else if(fastCash.fastcash==="1000"){
+            console.log(`you withdraw`,1000)
+            console.log(`you remaining balnce is :`,myBalance-1000)
+    
+        }else if(fastCash.fastcash==="1500"){
+            console.log(`you withdraw`,1500)
+            console.log(`you remaining balnce is :`,myBalance-1500)
+    
+        }else if(fastCash.fastcash==="2000"){
+            console.log(`you withdraw`,2000)
+            console.log(`you remaining balnce is :`,myBalance-2000)
+    
+        }else if(fastCash.fastcash==="10000"){
+            console.log(`you withdraw`,10000)
+            console.log(`you remaining balnce is :`,myBalance-10000)
+    
+        }else if(fastCash.fastcash==="otheramount"){
+            let amountAns = await inquirer.prompt(
+                [
+                    {
+                        name: "amount",
+                        message: "enter your amount",
+                        type: "number"
+                    }
+                ]
+            );
+            myBalance -= amountAns.amount;
+            console.log("your current balance is: " + myBalance)
+    
+        }
+    } else
+    {
+        console.log("Insufficient Balance!");
     }
 }
 }
